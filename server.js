@@ -1,16 +1,13 @@
-const express = require("express");
+import express from "express";
+import dotenv from "dotenv";
+import audioRoutes from "./routes/audioRoutes.js";
+
+dotenv.config();
 const app = express();
-const PORT = 3000;
 
-// Middleware to parse JSON
 app.use(express.json());
+app.use("/api/audio", audioRoutes);
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("🚀 AI Voice Agent server is running on localhost!");
-});
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`✅ Server is running at http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
 });

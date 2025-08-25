@@ -1,10 +1,14 @@
+// routes/ai.js
 const express = require("express");
-const { respond, transcribe, tts } = require("../controllers/aiController");
+const multer = require("multer");
+const path = require("path");
+const { respond, transcribe, tts } = require("../controllers/aicontroller");
 
 const router = express.Router();
+const upload = multer({ dest: path.join(__dirname, "..", "uploads") });
 
-router.post("/respond", respond);     // POST /api/ai/respond
-router.post("/transcribe", transcribe); // POST /api/ai/transcribe
-router.post("/speak", tts);             // POST /api/ai/speak
+router.post("/respond", respond);
+router.post("/transcribe", upload.single("audio"), transcribe); // key must be "audio"
+router.post("/speak", tts);
 
 module.exports = router;
