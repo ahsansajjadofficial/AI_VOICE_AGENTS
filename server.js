@@ -1,19 +1,16 @@
 const express = require("express");
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
-// Home route
+// Middleware to parse JSON
+app.use(express.json());
+
+// Test route
 app.get("/", (req, res) => {
-  res.send("🚀 AI Voice Agent Backend is Running!");
+  res.send("🚀 AI Voice Agent server is running on localhost!");
 });
-
-// inside server.js
-app.get("/api/ping", (req, res) => {
-  res.json({ message: "pong 🏓" });
-});
-
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server is live at http://localhost:${PORT}`);
+  console.log(`✅ Server is running at http://localhost:${PORT}`);
 });
